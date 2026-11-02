@@ -90,9 +90,9 @@ function getUserPosts(id) {
   );
 }
 function getUserFirstPost(userId) {
- return getUser(userId).then((user) =>
+  return getUser(userId).then((user) =>
     getUserPosts(userId).then((posts) => {
-      return posts[0].title
+      return posts[0].title;
     }),
   );
 }
@@ -114,3 +114,17 @@ function getPostCommentsCount(postId) {
 getPostCommentsCount(2)
   .then((result) => console.log(result))
   .catch((error) => console.log(error));
+
+//10
+
+function todoAndUser(todoId) {
+  return fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`)
+    .then((res) => res.json())
+    .then((todo) => {
+      return getUser(todo.userId).then((user) => {
+        return `Todo title: ${todo.title}\nUser name: ${user.name}`;
+      });
+})}
+todoAndUser(1)
+.then((result) => console.log(result))
+.catch((error) => console.log(error))
